@@ -1,0 +1,100 @@
+extends layout
+
+block content
+
+  script.
+    function adminLogin() {
+      let password;
+      password=prompt("Inserisci la password per accedere al pannello Amministratore:");
+      if(password != "1q2w3e4r") {
+          window.location="/";
+      }
+      console.log(password);
+    }
+    adminLogin();
+
+  div.container
+    h1 Pannello Amministratore
+    div.admin_cards
+      div.admin_card
+        div.admin_icon
+          i.fa.fa-desktop(aria-hidden='true')
+        div.admin_desc
+          span Dispositivi Registrati
+          span 89
+      div.admin_card
+        div.admin_icon
+          i.fa.fa-cogs(aria-hidden='true')
+        div.admin_desc
+          span Logs Manuali
+          span 40
+      div.admin_card
+        div.admin_icon
+          i.fa.fa-server(aria-hidden='true')
+        div.admin_desc
+          span Logs Automatici
+          span 200
+    div.admin_title
+      h1 Lista Dispositivi
+      a(onClick="openPopup('addPrinter')" class="action_btn")
+        i.fa.fa-plus(aria-hidden='true')
+  
+    div#printer-table
+
+
+    div(id="addPrinter", class= "popup")
+      div.popup_content
+        div.popup_header
+          div.popup_header_title
+            h2.popup_header_title_title AGGIUNGI STAMPANTE
+          div.popup_header_action_btn
+            a(onClick="closePopup('addPrinter')" class="action_btn")
+              i.fa.fa-times(aria-hidden='true')
+        
+        form(action="/#", method="POST", class="popup_form" onsubmit="location.reload(true)")
+          div.popup_form_action
+            h3.popup_form_action_title Inserisci Societá
+            select(name="tonerSelection")
+              option(value="Elite")
+                p Elite
+              option(value="Pewex")
+                p Pewex
+            h3.popup_form_action_title Inserisci Nome
+            input(type="text" name="printerName" placeholder="Tuscolana")
+            h3.popup_form_action_title Inserisci Modello
+            select(name="tonerSelection")
+              option(value="477")
+                p 477
+              option(value="P77")
+                p P77
+              option(value="MFP")
+                p MFP 
+              option(value="XEROX")
+                p XEROX
+              option(value="OTHER")
+                p Altro
+            h3.popup_form_action_title Inserisci Indirizzo IP
+            input(type="text" name="printerIP" placeholder="192.168.1.1")
+
+          button(type="submit" class="btn") Invia
+
+
+  script.
+    var printer = !{JSON.stringify(printer)};
+
+    var tabledata = [];
+
+    for (let i = 0; i < printer.length; i++) {
+      tabledata.push(printer[i][0]);
+    }
+    var table = new Tabulator("#printer-table", {
+      height: 205,
+      data: tabledata,
+      laoyut: "fitColumns",
+      columns: [
+        {title: "Societá", field: "society", width: 450, headerFilter: "input"},
+        {title: "Nome Stampante", field: "name", width: 450, headerFilter: "input"},
+        {title: "Modello", field: "model", width: 450, headerFilter: "input"},
+        {title: "Indirizzo IP", field: "ip", width: 450, headerFilter: "input"},
+      ]
+    });

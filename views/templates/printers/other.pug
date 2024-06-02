@@ -1,0 +1,79 @@
+block 477
+  div(class="device" id="device-"+prnt[0].ID+"")
+    div.device_header
+      div.device_header_title
+        if prnt[0].error == 1
+          span(class="offline" title="Stampante Offline, i dati risalgono all'ultima connessione")
+        else if prnt[0].error == 0
+          span(class="online" title="Stampante Online")
+        h2.device_header_title_name= prnt[0].name
+        h3.device_header_title_model= prnt[0].model
+      div.device_header_action
+        a(href='https://' + prnt[0].ip, target="_blank", class="action_btn")
+          i.fa.fa-cog(aria-hidden='true')
+        a(onClick="openPopup("+prnt[0].ID+")" class="action_btn")
+          i.fa.fa-archive(aria-hidden='true')
+    table.device_table
+        tr.device_table_header
+            th
+            th Perc
+            th Data
+            th Stock
+        tr.device_table_values
+            td
+              div.color.bk
+            td= prnt[4].percentage + "%"
+            if prnt[4].changed == 1
+              td.warning= prnt[4].date
+            else
+              td= prnt[4].date
+            td= prnt[4].stock
+  
+  div(id= prnt[0].ID, class= "popup")
+    div.popup_content
+      div.popup_header
+        div.popup_header_title
+          h2.popup_header_title_title Aggiornamento Stock
+          h3.popup_header_sub= prnt[0].name
+        div.popup_header_action_btn
+          a(onClick="closePopup("+prnt[0].ID+")" class="action_btn")
+            i.fa.fa-times(aria-hidden='true')
+      
+      form(action="/#", method="POST", class="popup_form" onsubmit="location.reload(true)")
+        select(name="printerName", style="display:none;")
+          option(value=prnt[0].ID)
+        div.popup_form_action
+          h3.popup_form_action_title Operatore
+          select(name="operator")
+            option(value="Davide Gioia")
+              p Davide Gioia
+            option(value="Mattia Pisciarelli")
+              p Mattia Pisciarelli
+            option(value="Claudio Burzi")
+              p Claudio Burzi 
+            option(value="Valentino Maisto")
+              p Valentino Maisto 
+            option(value="Romeo Balota")
+              p Romeo Balota
+            option(value="Dennys Di Benedetto")
+              p Dennys Di Benedetto
+            option(value="Matteo Castrati")
+              p Matteo Castrati
+          h3.popup_form_action_title Azione
+          select(name="tonerAction")
+            option(value="insert")
+              p Inserisci
+            option(value="remove")
+              p Rimuovi
+          h3.popup_form_action_title Toner
+          select(name="tonerSelection")
+            option(value="yellow")
+              p Giallo
+            option(value="magenta")
+              p Magenta
+            option(value="cyan")
+              p Ciano 
+            option(value="black")
+              p Nero
+
+        button(type="submit" class="btn") Invia

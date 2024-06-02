@@ -1,0 +1,52 @@
+@import "items/global.css";
+@import "items/device.css";
+@import "items/header.css";
+@import "items/navbar.css";
+@import "items/popup.css";
+@import "items/footer.css";
+@import "admin.css";
+@import "responsive.css";
+
+:root {
+    /* colors */
+    --clr-bg: #F4F4F4;
+    --clr-main: white;
+    --clr-text-normal: #4E535F;
+    --clr-text-important: #010c25;
+
+    --ye: rgb(255, 230, 0);
+    --ma: rgb(255, 0, 149);
+    --cy: rgb(0, 204, 255);
+    --bk: black;
+
+    /* settings */
+    --transition: 0.3s ease-out 50ms;
+    --box-shadow: 0px 0px 22px -1px rgba(168,168,168,0.48);
+    
+    /* general padding */
+    --g-padding: 8px 16px;
+    --container-padding: 0px 64px;
+
+    /* font sizes */
+    --fs-title: 28px;
+
+    /* emoji */
+    --warning: "⚠️";
+    --online: "🟢";
+    --offline: "🔴";
+    --error: "❌";
+    --success: "✅";
+    --excl-mark: "❗";
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg_color);
+    box-sizing: border-box;
+}

@@ -1,0 +1,115 @@
+block 477
+  div(class="device" id="device-"+prnt[0].ID+"")
+    div.device_header
+      div.device_header_title
+        if prnt[0].error == 1
+          span(class="offline" title="Stampante Offline, i dati risalgono all'ultima connessione")
+        else if prnt[0].error == 0
+          span(class="online" title="Stampante Online")
+        h2.device_header_title_name= prnt[0].name
+        h3.device_header_title_model= prnt[0].model
+      div.device_header_action
+        a(href='https://' + prnt[0].ip, target="_blank", class="action_btn")
+          i.fa.fa-cog(aria-hidden='true')
+        a(onClick="openPopup("+prnt[0].ID+")" class="action_btn")
+          i.fa.fa-archive(aria-hidden='true')
+    table.device_table
+        tr.device_table_header
+            th
+            th Pag
+            th Perc
+            th Data
+            th Stock
+        tr.device_table_values
+            td
+              div.color.ye
+            td= prnt[1].pages
+            td= prnt[1].percentage + "%"
+            if prnt[1].changed == 1
+              td.warning= prnt[1].date
+            else
+              td= prnt[1].date
+            td= prnt[1].stock
+        tr.device_table_values
+            td
+              div.color.ma
+            td= prnt[2].pages
+            td= prnt[2].percentage + "%"
+            if prnt[2].changed == 1
+              td.warning= prnt[2].date
+            else
+              td= prnt[2].date
+            td= prnt[2].stock
+        tr.device_table_values
+            td
+              div.color.cy
+            td= prnt[3].pages
+            td= prnt[3].percentage + "%"
+            if prnt[3].changed == 1
+              td.warning= prnt[3].date
+            else
+              td= prnt[3].date
+            td= prnt[3].stock
+        tr.device_table_values
+            td
+              div.color.bk
+            td= prnt[4].pages
+            td= prnt[4].percentage + "%"
+            if prnt[4].changed == 1
+              td.warning= prnt[4].date
+            else
+              td= prnt[4].date
+            td= prnt[4].stock
+  
+  div(id= prnt[0].ID, class= "popup")
+    div.popup_content
+      div.popup_header
+        div.popup_header_title
+          h2.popup_header_title_title AGGIORNA STOCK
+          h3.popup_header_sub= prnt[0].name
+        div.popup_header_action_btn
+          a(onClick="closePopup("+prnt[0].ID+")" class="action_btn")
+            i.fa.fa-times(aria-hidden='true')
+      
+      form(action="/#", method="POST", class="popup_form" onsubmit="location.reload(true)")
+        select(name="printerName", style="display:none;")
+          option(value=prnt[0].ID)
+        //- h3.popup_form_action_title Modifica Stampante
+        //- div.popup_form_action
+        //-   h3.popup_form_action_title Rinomina
+        //-   input(type="text" name="nameInput" placeholder=""+prnt[0].name+"")
+        //-   h3.popup_form_action_title Reimposta Indirizzo
+        //-   input(type="text" name="addressInput" placeholder=""+prnt[0].ip+"")
+        //-   h3.popup_form_action_title Reimposta Modello
+        //-   select(name="modelSelection")
+        //-     option(value="477")
+        //-       p 477
+        //-     option(value="MFP")
+        //-       p MFP
+        //-     option(value="P77")
+        //-       p P77
+        //-     option(value="XEROX")
+        //-       p XEROX
+        //-     option(value="OTHER")
+        //-       p OTHER
+        div.popup_form_action
+          h3.popup_form_action_title Azione
+          select(name="tonerAction")
+            option(value="insert")
+              p Inserisci
+            option(value="remove")
+              p Rimuovi
+          h3.popup_form_action_title Toner
+          select(name="tonerSelection")
+            option(value="yellow")
+              p Giallo
+            option(value="magenta")
+              p Magenta
+            option(value="cyan")
+              p Ciano 
+            option(value="black")
+              p Nero
+          h3.popup_form_action_title Note
+          input(name="note" placeholder="Inserisci un appunto sulla consegna...")
+
+        button(type="submit" class="btn") Invia

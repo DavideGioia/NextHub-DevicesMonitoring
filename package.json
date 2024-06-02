@@ -1,0 +1,28 @@
+{
+  "name": "printchecker",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "buffer": "^6.0.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.18.2",
+    "googleapis": "^133.0.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.2",
+    "net-snmp": "^3.10.3",
+    "pug": "^3.0.2",
+    "tabulator-tables": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
+  }
+}

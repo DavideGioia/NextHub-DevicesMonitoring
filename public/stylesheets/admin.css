@@ -1,0 +1,40 @@
+.admin_cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.admin_card {
+    width: auto;
+    background-color: #F8F9FD;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: var(--box-shadow);
+    width: 170px;
+    border-radius: 12px;
+}
+
+.admin_icon {
+    font-size: 3rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.admin_desc span{
+    text-align: center;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.admin_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.admin_title h2 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}

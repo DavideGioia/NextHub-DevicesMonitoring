@@ -1,0 +1,29 @@
+/* NAVBAR*/
+nav {
+  display: flex;
+  background-color: white;
+  padding: 0 64px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_logo img{
+  width: 225px;
+}
+  
+.nav_menu_list {
+  display: flex;
+  list-style: none;
+}
+  
+.nav_menu_list_item a{
+  text-decoration: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  color: rgb(23, 37, 42);
+  transition: var(--transition);
+}
+
+.nav_menu_list_item a:hover {
+  color: #3498db;
+}

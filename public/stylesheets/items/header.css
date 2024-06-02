@@ -1,0 +1,11 @@
+header {
+    text-align: center;
+    padding: 120px;
+    /* background: linear-gradient(313deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.3029586834733894) 40%, rgba(0,212,255,1) 100%), 
+                url("/images/background.svg"); */
+    background: url("/images/background.svg");
+    background-repeat: repeat-x;
+}
+header h1 {
+    font-size: 36px;
+}

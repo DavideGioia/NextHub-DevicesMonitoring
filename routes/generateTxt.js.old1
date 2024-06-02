@@ -1,0 +1,115 @@
+const printers = require('./printerList');
+const settings = require("./settings.js");
+
+
+function generateTxt(printers) {
+    let textPrinters = "";
+    let below = settings.below;
+
+    const timeElapsed = Date.now();
+    let today = new Date(timeElapsed);
+    textPrinters += "NextHub - Report Stampanti " + today.toLocaleDateString() + "\n\n";
+
+    textPrinters += "PEWEX: \n";
+    printers.forEach(prnt => {
+      if (prnt[0].society == "Pewex"){
+        if (prnt[0].error == 1){
+          textPrinters += prnt[0].name + tabsCalculator(prnt[0].name) + "NON RAGGIUNGIBILE\n";
+        } else {
+          let ye = prnt[1].pages;
+          let ma = prnt[2].pages;
+          let cy = prnt[3].pages;
+          let bk = prnt[4].pages; 
+          let tempYe, tempMa, tempCy, tempBk;
+          if (ye <= below && prnt[1].stock < 1 && ye != null) {tempYe = true;}
+          if (ma <= below && prnt[2].stock < 1 && ma != null) {tempMa = true;}
+          if (cy <= below && prnt[3].stock < 1 && cy != null) {tempCy = true;}
+          if (bk <= below && prnt[4].stock < 1 && bk != null) {tempBk = true;}
+          
+          if (tempYe || tempMa || tempCy || tempBk){
+            if (prnt[0].model == "MFP" || prnt[0].model == "XEROX"){
+              let NameAndModel = prnt[0].name + " " + prnt[0].model;
+              textPrinters += NameAndModel + tabsCalculator(NameAndModel);
+              if (tempYe){textPrinters += "Giallo " + ye + " (" + prnt[1].percentage + "%) ";}
+              if (tempMa){textPrinters += "Magenta " + ma + " (" + prnt[2].percentage + "%) ";}
+              if (tempCy){textPrinters += "Ciano " + cy + " (" + prnt[3].percentage + "%) ";}
+              if (tempBk){textPrinters += "Nero " + bk + " (" + prnt[4].percentage + "%) ";}
+            } else {
+              textPrinters += prnt[0].name + tabsCalculator(prnt[0].name);
+              if (tempYe){textPrinters += "Giallo " + ye + " ";}
+              if (tempMa){textPrinters += "Magenta " + ma + " ";}
+              if (tempCy){textPrinters += "Ciano " + cy + " ";}
+              if (tempBk){textPrinters += "Nero " + bk + " ";}
+            }
+            textPrinters += "\n";
+          }
+        }
+      }
+    });
+    textPrinters += "\nELITE: \n";
+    printers.forEach(prnt => {
+      if (prnt[0].society == "Elite"){
+        if (prnt[0].error == 1){
+          textPrinters += prnt[0].name + tabsCalculator(prnt[0].name) + "non raggiungibile\n";
+        } else {
+          let ye = prnt[1].pages;
+          let ma = prnt[2].pages;
+          let cy = prnt[3].pages;
+          let bk = prnt[4].pages; 
+          let tempYe, tempMa, tempCy, tempBk;
+          if (ye <= below && prnt[1].stock < 1 && ye != null) {tempYe = true;}
+          if (ma <= below && prnt[2].stock < 1 && ma != null) {tempMa = true;}
+          if (cy <= below && prnt[3].stock < 1 && cy != null) {tempCy = true;}
+          if (bk <= below && prnt[4].stock < 1 && bk != null) {tempBk = true;}
+          
+          if (tempYe || tempMa || tempCy || tempBk){
+            if (prnt[0].model == "MFP" || prnt[0].model == "XEROX" || prnt[0].model == "OTHER"){
+              let NameAndModel = prnt[0].name + " " + prnt[0].model;
+              textPrinters += NameAndModel + tabsCalculator(NameAndModel);
+              if (tempYe){textPrinters += "Giallo " + ye + " (" + prnt[1].percentage + "%) ";}
+              if (tempMa){textPrinters += "Magenta " + ma + " (" + prnt[2].percentage + "%) ";}
+              if (tempCy){textPrinters += "Ciano " + cy + " (" + prnt[3].percentage + "%) ";}
+              if (tempBk){textPrinters += "Nero " + bk + " (" + prnt[4].percentage + "%) ";}
+            } else {
+              textPrinters += prnt[0].name + tabsCalculator(prnt[0].name);
+              if (tempYe){textPrinters += "Giallo " + ye + " ";}
+              if (tempMa){textPrinters += "Magenta " + ma + " ";}
+              if (tempCy){textPrinters += "Ciano " + cy + " ";}
+              if (tempBk){textPrinters += "Nero " + bk + " ";}
+            }
+            textPrinters += "\n";
+          }
+          
+        }
+      }
+    });
+    
+    console.log("Foglio txt stampanti generato");
+    return (textPrinters);
+  }
+  
+  function tabsCalculator(name){
+    let tabsNumber = name.length;
+    let tabs = "";
+    switch (true) {
+      case tabsNumber < 8:
+        tabs = "\t\t\t";
+        break;
+      case tabsNumber < 16:
+        tabs = "\t\t";
+        break;
+      case tabsNumber < 24:
+        tabs = "\t";
+        break;
+      case tabsNumber < 32:
+        tabs = " ";
+        break;
+      case tabsNumber > 32:
+        tabs = " ";
+        break;
+    }
+    return tabs;
+  };
+
+
+  module.exports = generateTxt;

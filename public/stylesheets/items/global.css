@@ -1,0 +1,89 @@
+/* GENERAL ITEMS */
+h1 {
+    text-transform: uppercase;
+    font-size: var(--fs-title);
+    font-weight: 700;
+    color:  #010c25;
+    padding: 1.5rem 0;
+}
+
+.color { width: 15px; height: 15px; margin-right: 5px; }
+.ye { background-color: var(--ye); }
+.ma { background-color: var(--ma); }
+.cy { background-color: var(--cy); }
+.bk { background-color: var(--bk); }
+
+.container { padding: 0 64px; }
+
+/* icons */
+.warning { color: var(--ma);}
+.warning:after { position: absolute; content: var(--warning); margin-top: -1px; }
+.offline { position: absolute; font-size: 12px; margin-top: 3px; }
+.offline:before { content: var(--offline); }
+.online { position: absolute; font-size: 12px; margin-top: 3px; }
+.online:before { content: var(--online); }
+
+/* alerts */
+.warning_alert { background-color: rgb(255 0 0 / 11%); border: 1px solid #ff000069; border-radius: 8px; padding: 8px 16px; color: #990000;  margin-bottom: 30px;}
+.warning_alert:before {content: var(--excl-mark) "Attenzione: "; font-weight: 600;}
+
+
+/* action buttons */
+.action_btn {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #4E535F;
+    padding: 0.3rem;
+    border-radius: 50%;
+    margin: 3px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.action_btn i{
+    color: #4E535F;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 14px;
+}
+.action_btn:hover + i {
+    background-color: red;
+}
+
+/* buttons */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+    background: #3498db;
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    -webkit-border-radius: 12;
+    -moz-border-radius: 12;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: var(--transition);
+    margin-right: 12px;
+}
+.btn:hover {
+    background: #3f7dd9;
+    text-decoration: none;
+}
+
+select, input{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #c2c7d4;
+    color: #4E535F;
+    margin-bottom: 15px;
+}

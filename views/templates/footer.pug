@@ -1,0 +1,32 @@
+footer
+    div.footer_copy
+        p © 2024 Nexthub SRL. Tutti i diritti riservati. Sviluppato con il 💖, per la gloria
+    div.footer_links
+        a(onClick="openPopup('info')" class="") Informazioni
+        a(onClick="openPopup('changelog')" class="") Changelog
+
+div(id="info", class= "popup")
+    div.popup_content
+        div.popup_header
+            div.popup_header_title
+                h2.popup_header_title_title Informazioni
+            div.popup_header_action_btn
+                a(onClick="closePopup('info')" class="action_btn")
+                    i.fa.fa-times(aria-hidden='true')
+        div.popup_body
+            p NextHub PrintChecker é una WebAPP che nasce con lo scopo di risolvere un importante problema aziendale che riguarda la gestione, amministrazione e controllo di un numero elevato di dispositivi (stampanti). Il programma é in grado, mediante l'utilizzo di alcuni protocolli di rete come SNMP, di richiestare e calcolare le dovute informazioni direttamente al dispositivo.
+
+div(id="changelog", class= "popup")
+    div.popup_content
+        div.popup_header
+            div.popup_header_title
+                h2.popup_header_title_title Changelog
+            div.popup_header_action_btn
+                a(onClick="closePopup('changelog')" class="action_btn")
+                    i.fa.fa-times(aria-hidden='true')
+        div.popup_body
+            ul
+                li 1.0.0 BETA Rilasciata
+                li 1.1.0 Funzione per la generazione file .txt ottimizzata 
+                li 1.1.1 Aggiunti i check per tutti i modelli al file .txt
+            

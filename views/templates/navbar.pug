@@ -1,0 +1,29 @@
+block nav
+    nav
+        div.nav_logo
+            a(href='/')
+                img(src='/images/nh_logo.png')
+        div.nav_menu
+            ul.nav_menu_list 
+                li.nav_menu_list_item
+                    a(href='/') lista stampanti
+                li.nav_menu_list_item
+                    a(href='/logs') storico
+                li.nav_menu_list_item
+                    a(onClick="openPopup('txtwarn')" class="btn")
+                        i.fa.fa-file-text(aria-hidden='true')
+                li.nav_menu_list_item
+                    a(href='/admin' class="btn")
+                        i.fa.fa-user(aria-hidden='true')
+
+    div(id="txtwarn", class= "popup")
+        div.popup_content
+            div.popup_header
+                div.popup_header_title
+                    h2.popup_header_title_title Lista stampanti
+                div.popup_header_action_btn
+                    a(onClick="closePopup('txtwarn')" class="action_btn")
+                        i.fa.fa-times(aria-hidden='true')
+            form(action="/#", method="POST", class="popup_form" onsubmit="location.reload(true)")
+                h2.warning_alert assicurati di aver aggiornato le giacenze (stock) prima di scaricare la lista!
+                a(type="submit" onclick="downloadList(`"+txt+"`)" class="btn") Download
