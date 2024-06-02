@@ -26,7 +26,12 @@ div(id="changelog", class= "popup")
                     i.fa.fa-times(aria-hidden='true')
         div.popup_body
             ul
-                li 1.0.0 BETA Rilasciata
-                li 1.1.0 Funzione per la generazione file .txt ottimizzata 
-                li 1.1.1 Aggiunti i check per tutti i modelli al file .txt
-            
+                each commit in commits
+                    li
+                        strong Data: 
+                        | #{commit.date}
+                        br
+                        strong Update: 
+                        | #{commit.message}
+                        br
+                        br

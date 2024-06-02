@@ -15,6 +15,7 @@
     "mysql2": "^3.9.2",
     "net-snmp": "^3.10.3",
     "pug": "^3.0.2",
+    "simple-git": "^3.24.0",
     "tabulator-tables": "^6.2.1"
   },
   "devDependencies": {
