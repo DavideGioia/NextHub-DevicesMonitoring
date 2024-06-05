@@ -19,7 +19,7 @@ db.connect((err) => {
 async function takeSettings(db) {
   let settings = await db.promise().query("SELECT * FROM setting");
   
-  console.log(settings);
+  
   return settings; 
 }
 

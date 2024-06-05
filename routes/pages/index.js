@@ -10,16 +10,17 @@ const simpleGit = require('simple-git');
 
 var router = express.Router();
 
-const git = simpleGit();
 let allPrinters = printerList();
 
 updateDB();
 setInterval(updateDB, settings.interval);
 
 router.get('/', async function(req, res, next) {
+    const git = simpleGit();
     let allPrinters = await printerList();
     let textPrinters = await generateTxt(allPrinters);
 
+    // generate github commits
     const log = await git.log();
     const commit = log.all.map(commit => ({            
         hash: commit.hash,
@@ -27,14 +28,12 @@ router.get('/', async function(req, res, next) {
         message: commit.message,
         author: commit.author_name
     }));
-    console.log("ciao" + git);
 
     res.render('index', {printer: allPrinters, txt: textPrinters, commits: commit});    
 })
 
 router.post('/', async function(req, res, next) {
     updateStock(req);
-    console
     res.redirect('/#device-' + req.body.printerName);
 })
 

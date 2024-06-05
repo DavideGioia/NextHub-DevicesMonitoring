@@ -1,0 +1,41 @@
+name: Node.js CI/CD
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@2
+          
+        - name:
+          uses: actions/setup-node@2
+          with:
+            node-version: '17'
+
+        - name: Install dependencies
+          run: npm install
+
+        - name: Deploy to server
+          env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+            SERVER_USER: ${{ secrets.SERVER_USER }}
+            SERVER_HOST: ${{ secrets.SERVER_HOST }}
+            SERVER_APP_PATH: ${{ secrets.SERVER_APP_PATH }}
+          run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+            ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+              cd ${{ secrets.SERVER_APP_PATH }}
+              git pull origin master
+              npm install
+              npm start
+            EOF

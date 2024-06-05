@@ -4,32 +4,42 @@ block content
   header
     h1 Storico Consegne
   div.container
-    div#example-table
+    div#logs-table
 
   script.
-    var tabledata = [
-      {id: 1, society: "Pewex", printer: "Tuscolana", toner: "Nero", data: "15/03/2024", note: "test test test"},
-      {id: 2, society: "Pewex", printer: "aTuscolana", toner: "Giallo", data: "15/03/2024", note: "test test test"},
-      {id: 3, society: "Pewex", printer: "bTuscolana", toner: "Ciano", data: "15/03/2024", note: "test test test"},
-      {id: 4, society: "Pewex", printer: "cTuscolana", toner: "Giallo", data: "15/03/2024", note: "test test test"},
-      {id: 5, society: "Pewex", printer: "Tuscolana", toner: "Nero", data: "15/03/2024", note: "test test test"},
-      {id: 6, society: "Pewex", printer: "abTuscolana", toner: "Nero", data: "15/03/2024", note: "test test test"},
-      {id: 7, society: "Pewex", printer: "zTuscolana", toner: "Ciano", data: "15/03/2024", note: "test test test"},
-      {id: 8, society: "Pewex", printer: "Tuscolana", toner: "Ciano", data: "15/03/2024", note: "test test test"},
-      {id: 9, society: "Pewex", printer: "Tuscolana", toner: "Giallo", data: "15/03/2024", note: "test test test"},
-      {id: 10, society: "Pewex", printer: "Tuscolana", toner: "Nero", data: "15/03/2024", note: "test test test"},
-      {id: 11, society: "Pewex", printer: "prova", toner: "Ciano", data: "15/03/2024", note: "test test test"}
-    ];
-    var table = new Tabulator("#example-table", {
+    var logs = !{JSON.stringify(log)};
+    var printer = !{JSON.stringify(printer)};
+    let printerName;
+
+    var tabledata = [];
+
+    let length = 0;
+    let i = 0;
+    while(true) {
+      if(logs[0][i]) {i++}
+      else{length = i; break;}
+    }
+
+    for (let i = 0; i < length; i++) {
+        for (let j = 0; j < printer.length; j++) {
+          if(printer[j][0].ID == logs[0][i].printer) {
+            logs[0][i].printer = printer[j][0].name;
+          }
+        }
+      tabledata.push(logs[0][i]);
+    }
+    
+    var table = new Tabulator("#logs-table", {
       height: 205,
       data: tabledata,
       laoyut: "fitColumns",
       columns: [
-        {title: "Societá", field: "society", width: 150, headerFilter: "input"},
+        {title: "Societá", field: "society", width: 250, headerFilter: "input"},
         {title: "Stampante", field: "printer", width: 250, headerFilter: "input"},
         {title: "Modello", field: "model", width: 250, headerFilter: "input"},
-        {title: "Toner", field: "toner", width: 150, headerFilter: "input"},
+        {title: "Toner", field: "toner", width: 250, headerFilter: "input"},
         {title: "Data", field: "data", width: 250, headerFilter: "input"},
-        {title: "Note", field: "note", width: 250, headerFilter: "input"}
+        {title: "Note", field: "note", width: 250, headerFilter: "input"},
+        {title: "Inserimento", field: "type", width: 250, headerFilter: "input"}
       ]
     });
