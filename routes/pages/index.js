@@ -18,7 +18,7 @@ setInterval(updateDB, settings.interval);
 router.get('/', async function(req, res, next) {
     const git = simpleGit();
     let allPrinters = await printerList();
-    let textPrinters = await generateTxt(allPrinters);
+    let textPrinters = generateTxt(allPrinters);
 
     // generate github commits
     const log = await git.log();
