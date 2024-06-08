@@ -42,4 +42,37 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+// Funzione per chiudere il pool di connessioni
+const closePoolAndExit = async () => {
+  try {
+    await pool.end();
+    console.log('Pool closed');
+    server.close(() => {
+      console.log('Server closed');
+      process.exit(0);
+    });
+  } catch (err) {
+    console.error('Error closing the pool', err);
+    process.exit(1);
+  }
+};
+
+// Gestione dei segnali di terminazione
+process.on('SIGINT', closePoolAndExit);
+process.on('SIGTERM', closePoolAndExit);
+
+// Gestione degli errori non catturati
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err);
+  closePoolAndExit();
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection:', reason);
+  closePoolAndExit();
+});
+
+
+
 module.exports = app;
