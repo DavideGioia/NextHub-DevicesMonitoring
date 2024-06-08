@@ -28,7 +28,7 @@ function societyDivider(society, printers) {
         if(prnt[0].society == society) {
             let ye, ma, cy, bk;
             let tempYe, tempMa, tempCy, tempBk;
-            
+
             if (prnt[0].model == "MFP" || prnt[0].model == "XEROX" || prnt[0].model == "P77") {
                 printerName = prnt[0].name + " " + prnt[0].model;
             } else { printerName = prnt[0].name; }
@@ -37,10 +37,27 @@ function societyDivider(society, printers) {
                 tempText += printerName + tabsCalculator(printerName) + "NON RAGGIUNGIBILE\n";
             } else {
                 if (prnt[0].model != "XEROX" || prnt[0].model != "OTHER") {
-                    ye = prnt[1].pages;
-                    ma = prnt[2].pages;
-                    cy = prnt[3].pages;
-                    bk = prnt[4].pages;
+                    console.log(prnt[0].model + " " + prnt[0].name);
+                    if(prnt[1].pages != undefined) {
+                        ye = prnt[1].pages;
+                    } else {
+                        console.log("ye null/undefined");
+                    }
+                    if(prnt[2].pages != undefined) {
+                        ma = prnt[2].pages;
+                    } else {
+                        console.log("ma null/undefined");
+                    }
+                    if(prnt[3].pages != undefined) {
+                        cy = prnt[3].pages;
+                    } else {
+                        console.log("cy null/undefined");
+                    }
+                    if(prnt[4].pages != undefined) {
+                        bk = prnt[4].pages;
+                    } else {
+                        console.log("bk null/undefined");
+                    }
 
                     if (ye <= below && prnt[1].stock < 1 && ye != null) {tempYe = true;}
                     if (ma <= below && prnt[2].stock < 1 && ma != null) {tempMa = true;}
