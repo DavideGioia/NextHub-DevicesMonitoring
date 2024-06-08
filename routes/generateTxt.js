@@ -26,6 +26,7 @@ function societyDivider(society, printers) {
 
     printers.forEach(prnt => {
         if(prnt[0].society == society) {
+            let ye, ma, cy, bk;
             if (prnt[0].model == "MFP" || prnt[0].model == "XEROX" || prnt[0].model == "P77") {
                 printerName = prnt[0].name + " " + prnt[0].model;
             } else { printerName = prnt[0].name; }
@@ -33,15 +34,18 @@ function societyDivider(society, printers) {
             if (prnt[0].error == 1) {
                 tempText += printerName + tabsCalculator(printerName) + "NON RAGGIUNGIBILE\n";
             } else {
-                let ye = prnt[1].pages;
-                let ma = prnt[2].pages;
-                let cy = prnt[3].pages;
-                let bk = prnt[4].pages;
-                let tempYe, tempMa, tempCy, tempBk;
-                if (ye <= below && prnt[1].stock < 1 && ye != null) {tempYe = true;}
-                if (ma <= below && prnt[2].stock < 1 && ma != null) {tempMa = true;}
-                if (cy <= below && prnt[3].stock < 1 && cy != null) {tempCy = true;}
-                if (bk <= below && prnt[4].stock < 1 && bk != null) {tempBk = true;}
+                if (prnt[0].model != "XEROX" || prnt[0].model != "OTHER") {
+                    ye = prnt[1].pages;
+                    ma = prnt[2].pages;
+                    cy = prnt[3].pages;
+                    bk = prnt[4].pages;
+                    
+                    let tempYe, tempMa, tempCy, tempBk;
+                    if (ye <= below && prnt[1].stock < 1 && ye != null) {tempYe = true;}
+                    if (ma <= below && prnt[2].stock < 1 && ma != null) {tempMa = true;}
+                    if (cy <= below && prnt[3].stock < 1 && cy != null) {tempCy = true;}
+                    if (bk <= below && prnt[4].stock < 1 && bk != null) {tempBk = true;}
+                }
                 if (prnt[0].model == "MFP") {
                     if(tempBk || tempCy || tempMa || tempYe){
                         tempText += printerName + tabsCalculator(printerName);
