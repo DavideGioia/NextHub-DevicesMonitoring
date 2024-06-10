@@ -36,24 +36,24 @@ function societyDivider(society, printers) {
             if (prnt[0].error == 1) {
                 tempText += printerName + tabsCalculator(printerName) + "NON RAGGIUNGIBILE\n";
             } else {
-                if (prnt[0].model != "XEROX" || prnt[0].model != "OTHER") {
+                if (prnt[0].model != "XEROX" && prnt[0].model != "OTHER") {
                     console.log(prnt[0].model + " " + prnt[0].name);
-                    if(prnt[1].pages != undefined) {
+                    if(prnt[1] != undefined) {
                         ye = prnt[1].pages;
                     } else {
                         console.log("ye null/undefined");
                     }
-                    if(prnt[2].pages != undefined) {
+                    if(prnt[2] != undefined) {
                         ma = prnt[2].pages;
                     } else {
                         console.log("ma null/undefined");
                     }
-                    if(prnt[3].pages != undefined) {
+                    if(prnt[3] != undefined) {
                         cy = prnt[3].pages;
                     } else {
                         console.log("cy null/undefined");
                     }
-                    if(prnt[4].pages != undefined) {
+                    if(prnt[4] != undefined) {
                         bk = prnt[4].pages;
                     } else {
                         console.log("bk null/undefined");

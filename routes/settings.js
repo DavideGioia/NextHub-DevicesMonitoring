@@ -4,7 +4,7 @@ let db = mysql.createPool({
     multipleStatements: true,
     host: "localhost",
     user: "root",
-    password: 'Kulo123!',
+    password: 'NextHub01!',
     database: "nh_printchecker",
     waitForConnections: true,
     connectionLimit: 10,
